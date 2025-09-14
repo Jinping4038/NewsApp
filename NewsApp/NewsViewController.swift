@@ -9,7 +9,7 @@ import UIKit
 
 class NewsViewController: UIViewController {
     
-    let newsViewModel = NewsViewModel(source: .fakeDatabase)
+    let newsViewModel = NewsViewModel(source: .DataFacade)
     
     @IBOutlet weak var myTableView: UITableView!
 

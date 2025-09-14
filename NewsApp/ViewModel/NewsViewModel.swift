@@ -11,7 +11,7 @@ class NewsViewModel {
     var newsList = [Article]()
     private let newsDataSource: NewsDataSource
     init(source: DataFactory){
-        self.newsDataSource = NewsFactory.create(type: .fakeDatabase)
+        self.newsDataSource = NewsFactory.create(type: .DataFacade)
     }
 //    let networkManager: NetworkManager
 //    

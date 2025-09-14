@@ -36,8 +36,8 @@ extension NetworkManager: NewsProtocol {
             
             if let (data, _) = try? await self.urlSession.data(from: URL(string: url)!) {
                        if let jsonString = String(data: data, encoding: .utf8) {
-                           print("⚠️ Decoding failed: \(error)")
-                           print("🔍 Raw JSON: \(jsonString)")
+                           print("Decoding failed: \(error)")
+                           print("Raw JSON: \(jsonString)")
                        }
                    }
                    throw error
