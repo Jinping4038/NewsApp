@@ -13,6 +13,7 @@ class CacheManager {
     func save(_ articles: [Article]){
         cachedArticleList = articles
         lastUpdate = Date()
+        print("Saved data:\(articles.count)")
     }
     
     func getCachedData(expiration: TimeInterval = 60) -> [Article]?{
@@ -20,6 +21,7 @@ class CacheManager {
               let lastUpdateTime = lastUpdate else {
             return nil
         }
+        print("Saved data:\(cachedData.count)")
         
         if Date().timeIntervalSince(lastUpdateTime) > expiration {
             return nil

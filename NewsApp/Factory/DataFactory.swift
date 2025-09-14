@@ -14,7 +14,7 @@ protocol NewsDataSource {
 enum DataFactory {
     case fakeDatabase
     case apiData
-    case DataFacade
+    case dataFacade
 }
 
 class NewsFactory {
@@ -24,7 +24,7 @@ class NewsFactory {
             return FakeDatabase()
         case .apiData:
             return NewsApi()
-        case .DataFacade:
+        case .dataFacade:
             return DataFacade()
             
         }
