@@ -33,7 +33,30 @@ extension NetworkManager: NewsProtocol {
             
             return receivedData
         } catch {
+            
+            if let (data, _) = try? await self.urlSession.data(from: URL(string: url)!) {
+                       if let jsonString = String(data: data, encoding: .utf8) {
+                           print("⚠️ Decoding failed: \(error)")
+                           print("🔍 Raw JSON: \(jsonString)")
+                       }
+                   }
+                   throw error
+            
+        }
+    }
+}
+
+class NewsApi: NewsDataSource {
+    let networkManager = NetworkManager()
+    func fetchNewsData() async throws -> [Article] {
+        do {
+            let newsdata = try await networkManager.fetchNewsDataFromUrl(url: Constant.NewsEndPoint, modelType: NewsData.self)
+            return newsdata.articles
+        } catch {
+            
+            print(error.localizedDescription)
             throw error
+            
         }
     }
 }

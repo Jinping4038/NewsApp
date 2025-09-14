@@ -37,7 +37,7 @@ class NewsTableViewCell: UITableViewCell {
                 if let data = try? Data(contentsOf: imageUrl),
                    let image = UIImage(data:data){
                     DispatchQueue.main.async {
-                        self.tableViewImage.image = UIImage(data: data)
+                        self.tableViewImage.image = image
                     }
                 }
             }

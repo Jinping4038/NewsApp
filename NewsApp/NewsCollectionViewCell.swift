@@ -27,7 +27,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
                 if let data = try? Data(contentsOf: imageUrl),
                    let image = UIImage(data:data){
                     DispatchQueue.main.async {
-                        self.collectionViewImage.image = UIImage(data: data)
+                        self.collectionViewImage.image = image
                     }
                 }
             }

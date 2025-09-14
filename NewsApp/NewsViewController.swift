@@ -9,13 +9,10 @@ import UIKit
 
 class NewsViewController: UIViewController {
     
-    let newsViewModel = NewsViewModel(networkManager: NetworkManager())
-    
+    let newsViewModel = NewsViewModel(source: .fakeDatabase)
     
     @IBOutlet weak var myTableView: UITableView!
 
-  
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +21,7 @@ class NewsViewController: UIViewController {
             await getNewsData()
         }
     }
+    
     func getNewsData() async{
         do {
             try await newsViewModel.getNewsList()
@@ -41,15 +39,11 @@ class NewsViewController: UIViewController {
 
 extension NewsViewController: UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return newsViewModel.newsList.count
-        } else {
-            return newsViewModel.newsList.count
-        }
+        return newsViewModel.newsList.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,7 +57,7 @@ extension NewsViewController: UITableViewDataSource{
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
-            let article = newsViewModel.newsList[indexPath.row]
+            let article = newsViewModel.newsList[indexPath.row - 1]
             cell.configure(with: article)
             return cell
         }

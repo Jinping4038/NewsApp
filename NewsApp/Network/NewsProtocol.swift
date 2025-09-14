@@ -10,3 +10,4 @@ protocol NewsProtocol {
     func fetchNewsDataFromUrl<T: Decodable>(url: String, modelType: T.Type) async throws -> T
 }
 
+
